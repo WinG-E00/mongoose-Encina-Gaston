@@ -1,15 +1,22 @@
 import express from 'express'
+import "dotenv/config";
+
 
 //Cors es para permitir que solo ciertos origenes puedan realizar ciertas consultas en tu servidor 
 import cors from "cors";
-// Es para 
+
+// Sirve para guardar ciertos parametros en las cookies  
 import cookieParser from "cookie-parser";
+
+import startDB from './src/config/database';
+
+
+//Variables
+const PORT = process.env
 
 
 //
 const app = express()
-
-
 
 
 // Configuracion de el app
@@ -24,3 +31,15 @@ app.use(express.json());
 
 
 //Levantar servidor
+app.listen(PORT, async ( ) => {
+
+    try {
+        startDB();
+
+        console.log("se levanto correctamente el servidor en el puerto", PORT);
+
+    } catch(error){
+        console.log('Hubo un error al intentar levantar el servidor en el puerto', PORT)
+    }
+
+})
