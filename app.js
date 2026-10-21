@@ -30,6 +30,12 @@ app.use(express.json());
 
 
 
+//Testeo de ruta basica para comprobar estado del servidor
+app.get('/test', (req, res) => {
+  res.send('Ok')
+})
+
+
 //Levantar servidor
 app.listen(PORT, async ( ) => {
 

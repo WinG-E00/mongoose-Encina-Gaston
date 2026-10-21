@@ -1,11 +1,16 @@
 import mongoose from "mongosee";
+import "dotenv/config";
+
+
+const URI = procees.env.URI_MONGODBATLAS
+
 
 
 const startDB = async () => { 
 
     try {
 
-        await mongoose.connect("mongodb+srv://gastonencinawj_db_user:PYcyLrDwZwJycbqv@cluster0.ejekpjy.mongodb.net/");
+        await mongoose.connect(URI);
         console.log("Se conecto correctamente a la base de datos de mongodb")
 
 
