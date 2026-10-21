@@ -8,11 +8,11 @@ import cors from "cors";
 // Sirve para guardar ciertos parametros en las cookies  
 import cookieParser from "cookie-parser";
 
-import startDB from './src/config/database';
+import startDB from './src/config/database.js';
 
 
 //Variables
-const PORT = process.env
+const PORT = process.env.PORT
 
 
 //

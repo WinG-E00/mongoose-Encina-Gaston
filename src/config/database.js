@@ -1,8 +1,8 @@
-import mongoose from "mongosee";
+import mongoose from "mongoose";
 import "dotenv/config";
 
 
-const URI = procees.env.URI_MONGODBATLAS
+const URI = process.env.URI_MONGODBATLAS
 
 
 
