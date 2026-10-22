@@ -6,7 +6,7 @@ const storeSchema = new Schema({
 
     name:{
         type: String,
-        required: true,
+        requiered: true,
         unique: true,
     },
     location: {
@@ -15,12 +15,13 @@ const storeSchema = new Schema({
     },
     estado: {
         type: String,
-        enum: ['Activo', 'Inactvio'],
+        enum: ['Activo', 'Inactivo'],
         default: 'Activo'
 
     }
 
-})
+});
+
 
 export const StoreModel =  model("Store", storeSchema);
 

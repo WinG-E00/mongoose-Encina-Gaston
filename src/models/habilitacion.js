@@ -14,7 +14,7 @@ const habilitacionSchema = new Schema({
         type: String ,
         required: true,
         unique: true,
-        
+            
     },
     vigencia: {
         fechaEmision: {

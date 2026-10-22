@@ -9,6 +9,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 import startDB from './src/config/database.js';
+import storeRouter from './src/routes/stores.router.js';
 
 
 //Variables
@@ -27,7 +28,7 @@ app.use(express.json());
 
 
 //Configuracion de el router
-
+app.use('/api', storeRouter )
 
 
 //Testeo de ruta basica para comprobar estado del servidor
