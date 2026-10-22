@@ -16,7 +16,8 @@ const productSchema = new Schema({
         type: Number,
         required: true
     },
-    //Aca tengo que crear una relacion con la store Esta seria una relacion de uno: a muchos
+    
+    //Relacion de uno: a muchos
     tienda: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Store',
@@ -26,4 +27,4 @@ const productSchema = new Schema({
 })
 
 
-const ProductModel = model("Product", productSchema);
+export const ProductModel = model("Product", productSchema);

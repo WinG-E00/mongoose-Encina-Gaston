@@ -11,9 +11,20 @@ const habilitacionSchema = new Schema({
         unique: true
     },
     actividad: {
-        type: Number,
+        type: String ,
         required: true,
         unique: true,
+        
+    },
+    vigencia: {
+        fechaEmision: {
+            type: Date,
+            required: true
+        },
+        fechaVencimiento: {
+            type: Date,
+            required: true
+        }
     },
 
     // Relacion de uno a uno con la tienda
@@ -25,4 +36,8 @@ const habilitacionSchema = new Schema({
     }
 
 
-})
+});
+
+
+
+export const HabilitacionModel = model("Habilitacion", habilitacionSchema);

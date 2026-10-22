@@ -8,11 +8,9 @@ const ownerSchema = new Schema({
     name: {
         type: String,
         required: true,
-    },
-    tienda:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Store'
-    
     }
-
+    
 })
+
+
+export const OwnerModel = model("Owner", ownerSchema);
