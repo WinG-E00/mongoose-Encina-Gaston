@@ -10,6 +10,10 @@ import cookieParser from "cookie-parser";
 
 import startDB from './src/config/database.js';
 import storeRouter from './src/routes/stores.router.js';
+import routerHabilitacion from './src/routes/habilitacion.router.js';
+import routerOwner from './src/routes/owner.router.js';
+import routerOwnerStore from './src/routes/ownerStore.router.js';
+import routerProducts from './src/routes/products.router.js';
 
 
 //Variables
@@ -29,6 +33,11 @@ app.use(express.json());
 
 //Configuracion de el router
 app.use('/api', storeRouter )
+app.use('/api', routerHabilitacion )
+app.use('/api', routerOwner )
+app.use('/api', routerOwnerStore )
+app.use('/api', routerProducts )
+
 
 
 //Testeo de ruta basica para comprobar estado del servidor

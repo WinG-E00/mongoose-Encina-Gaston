@@ -1,12 +1,14 @@
 import express from 'express';
 
-const routerOwner = express.Router();
+const routerOwnerStore = express.Router();
 
 
-routerOwner.post('/owner/createOwner', createOwner);
+routerOwnerStore.post('/owner/createOwnerStore', createOwnerStore);
 
-routerOwner.get('/owner/getAllOwners', getAllOwners);
+routerOwnerStore.get('/owner/getAllOwnersStore', getAllOwnerStore);
 
-routerOwner.put('/owner/updateOwner/:id', updateOwner);
+routerOwnerStore.put('/owner/updateOwnerStore/:id', updateOwnerStore);
 
-routerOwner.delete('/owner/getAllOwners', deleteOwner);
+routerOwnerStore.delete('/owner/getAllOwnerStore/:id', deleteOwnerStore);
+
+export default routerOwnerStore;
