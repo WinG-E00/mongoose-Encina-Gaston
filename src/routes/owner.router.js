@@ -1,4 +1,5 @@
 import express from 'express';
+import { createOwner, deleteOwner, getAllOwners, updateOwner } from '../controllers/onwer.controller.js';
 
 const routerOwner = express.Router();
 

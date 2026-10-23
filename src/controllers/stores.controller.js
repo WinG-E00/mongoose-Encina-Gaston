@@ -51,7 +51,7 @@ export const obtenerStoresController =  async(req, res) => {
 export const actualizarStoreController = async(req, res) => {
     try{
 
-        const { id} =  req.params;
+        const { id } =  req.params;
 
         const { name, location, estado } = req.body;
 
