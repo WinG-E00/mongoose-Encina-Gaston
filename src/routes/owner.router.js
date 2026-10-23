@@ -1,17 +1,18 @@
+import { createOwner, getAllOwners, updateOwner, deleteOwner } from "../controllers/owner.controller.js";
+import { crearOwnerValidator, actualizarOwnerValidator, eliminarOwnerValidator } from "../middlewares/validators/owners.validators.js";
 import express from 'express';
-import { createOwner, deleteOwner, getAllOwners, updateOwner } from '../controllers/onwer.controller.js';
 
 const routerOwner = express.Router();
 
 
 
-routerOwner.post('/owner/createOwner', createOwner);
+routerOwner.post('/owner/createOwner', crearOwnerValidator, createOwner);
 
 routerOwner.get('/owner/getAllOwners', getAllOwners);
 
-routerOwner.put('/owner/updateOwner/:id', updateOwner);
+routerOwner.put('/owner/updateOwner/:id', actualizarOwnerValidator, updateOwner);
 
-routerOwner.delete('/owner/deleteOwner/:id', deleteOwner);
+routerOwner.delete('/owner/deleteOwner/:id', eliminarOwnerValidator, deleteOwner);
 
 
 export default routerOwner;

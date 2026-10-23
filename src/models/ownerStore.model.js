@@ -3,7 +3,7 @@ import {model, Schema } from 'mongoose';
 
 const ownerStoreSchema = new Schema({
 
-    onwer: {
+    owner: {
         type: Schema.Types.ObjectId,
         ref: 'Owner',
         required:true
@@ -18,6 +18,8 @@ const ownerStoreSchema = new Schema({
 })
 
 
+
+ownerStoreSchema.index({ owner: 1, store: 1 }, { unique: true });
 
 export const OwnerStoreModel = model('OwnerStore', ownerStoreSchema);
 

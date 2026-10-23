@@ -2,7 +2,7 @@ import { HabilitacionModel } from "../models/habilitacion.js";
 
 
 
-const createHabilitacion = async (req, res) => {
+export const createHabilitacion = async (req, res) => {
     try{ 
         
         const { numero, actividad, vigencia, tienda } = req.body;
@@ -16,7 +16,7 @@ const createHabilitacion = async (req, res) => {
     }
 };
 
-const getAllHabilitacion = async (req, res) => {
+export const getAllHabilitacion = async (req, res) => {
     try{ 
         
         const habilitaciones = await HabilitacionModel.find();
@@ -30,13 +30,23 @@ const getAllHabilitacion = async (req, res) => {
     }
 };
 
-const updateHabilitacion = async (req, res) => {
+export const updateHabilitacion = async (req, res) => {
     try{ 
         
         const { id } = req.params;
         const { numero, actividad, vigencia, tienda } = req.body;
 
-        const habiltacionActualizada = await HabilitacionModel.findByIdAndUpdate(id, { numero, actividad, vigencia, tienda } );
+        const cambios = Object.fromEntries(
+            Object.entries({ numero, actividad, tienda }).filter(([, value]) => value !== undefined)
+        );
+        for (const campo of ['fechaEmision', 'fechaVencimiento']) {
+            if (vigencia?.[campo] !== undefined) {
+                cambios[`vigencia.${campo}`] = vigencia[campo];
+            }
+        }
+        const habiltacionActualizada = await HabilitacionModel.findByIdAndUpdate(
+            id, { $set: cambios }, { new: true, runValidators: true }
+        );
 
         return res.status(200).json({ "msg": "Se actualizo correctamente la Habilitacion", "data": habiltacionActualizada });
 
@@ -46,7 +56,7 @@ const updateHabilitacion = async (req, res) => {
 };
 
 
-const deleteHabilitacion = async (req, res) => {
+export const deleteHabilitacion = async (req, res) => {
     try{ 
         
         const { id } = req.params;

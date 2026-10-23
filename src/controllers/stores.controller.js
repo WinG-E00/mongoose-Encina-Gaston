@@ -32,13 +32,14 @@ export const obtenerStoresController =  async(req, res) => {
 
     try {
         
-        const allStores = await StoreModel.find();
+        const allStores = await StoreModel.find().populate();
 
         return res.status(200).json({ "msg": "Operacion realizada con exito", "data": allStores })
 
 
     }catch(err){
-        res.status(500).json({
+        
+       return res.status(500).json({
             "msg": "Error al hacer la consulta",
             err
         })

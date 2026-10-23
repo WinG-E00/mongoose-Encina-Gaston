@@ -1,5 +1,4 @@
 import { model, Schema } from 'mongoose';
-import mongoose from 'mongoose';
 
 
 
@@ -29,7 +28,7 @@ const habilitacionSchema = new Schema({
 
     // Relacion de uno a uno con la tienda
     tienda: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Store',
         required: true,
         unique: true

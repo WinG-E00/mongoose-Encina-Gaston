@@ -1,10 +1,13 @@
-import mongoose from 'mongoose';
 import { model, Schema } from 'mongoose';
 
 
 const productSchema = new Schema({
 
     name:{
+        type: String,
+        required: true,
+    },
+    marca:{
         type: String,
         required: true,
     },
@@ -19,7 +22,7 @@ const productSchema = new Schema({
     
     //Relacion de uno: a muchos
     tienda: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Store',
         required: true
     }

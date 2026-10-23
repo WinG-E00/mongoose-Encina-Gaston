@@ -14,6 +14,9 @@ export const createOwnerStore = async (req, res) => {
         res.status(201).json({ "msg": "Se creo correctamente la relacion", OwnerStoreCreado })
 
     }catch(err){
+        if (err.code === 11000) {
+            return res.status(409).json({ msg: "Ya existe la relacion entre este dueño y esta tienda" });
+        }
         return res.status(500).json()
     }
 }
@@ -27,6 +30,9 @@ export const getAllOwnersStore = async (req, res) => {
         res.status(200).json()
 
     }catch(err){
+        if (err.code === 11000) {
+            return res.status(409).json({ msg: "Ya existe la relacion entre este dueño y esta tienda" });
+        }
         return res.status(500).json()
     }
 }
@@ -43,6 +49,9 @@ export const updateOwnerStore = async (req, res) => {
         res.status(200).json()
 
     }catch(err){
+        if (err.code === 11000) {
+            return res.status(409).json({ msg: "Ya existe la relacion entre este dueño y esta tienda" });
+        }
         return res.status(500).json()
     }
 }
@@ -58,6 +67,9 @@ export const deleteOwnerStore = async (req, res) => {
         return res.status(200).json()
 
     }catch(err){
+        if (err.code === 11000) {
+            return res.status(409).json({ msg: "Ya existe la relacion entre este dueño y esta tienda" });
+        }
         return res.status(500).json()
     }
 }

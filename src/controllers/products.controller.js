@@ -1,12 +1,12 @@
 import { ProductModel } from "../models/products.js";
 
 
-const createProduct = async (req, res) => {
+export const createProduct = async (req, res) => {
 
     try {
 
-        const { name, price, stock, tienda } = req.body;
-        const productoCreado = await ProductModel.create({ name, price, stock, tienda });
+        const { name, marca, price, stock, tienda } = req.body;
+        const productoCreado = await ProductModel.create({ name, marca, price, stock, tienda });
         return res.status(201).json({ "msg": "Se creo el producto correctamente", "data": productoCreado  })
 
 
@@ -20,7 +20,7 @@ const createProduct = async (req, res) => {
 
 
 
-const getAllProduct = async (req, res) => {
+export const getAllProduct = async (req, res) => {
 
     try {
 
@@ -37,13 +37,13 @@ const getAllProduct = async (req, res) => {
 
 
 
-const updateProduct = async (req, res) => {
+export const updateProduct = async (req, res) => {
 
     try {
 
         const { id } = req.params;
-        const { name, price, stock, tienda } = req.body;
-        const productoActualizado = await ProductModel.findByIdAndUpdate( id, { name, price, stock, tienda } )
+        const { name, marca, price, stock, tienda } = req.body;
+        const productoActualizado = await ProductModel.findByIdAndUpdate( id, { name, marca, price, stock, tienda } )
 
         return res.status(200).json({"msg": "Se actualizo correctamente el producto", productoActualizado})
 
@@ -57,7 +57,7 @@ const updateProduct = async (req, res) => {
 
 
 
-const deleteProduct = async (req, res) => {
+export const deleteProduct = async (req, res) => {
     try {
         
         const { id } = req.params;
@@ -71,4 +71,3 @@ const deleteProduct = async (req, res) => {
 
     }
 }
-
