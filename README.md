@@ -1,26 +1,28 @@
-### Relacion N:M
-En la relacion de muchos a muchos se utilizo el referenciado en una coleccion intermedia para poder crear las relaciones entre owners y stores
+### Relación N:M Propietarios y tiendas
 
-### Relacion 1:M
-En la relacion de uno muchos se utilizo se utilizo el referenciado para que al crear un producto, se utilize el id de la tabla tienda para crear la relacion y asi que muchos productos posean una sola tienda.
+En la relación de muchos a muchos, un propietario (`Owner`) puede estar asociado a varias tiendas (`Store`), y una tienda puede tener varios propietarios. Para conectar ambos modelos se utiliza una colección intermedia llamada `OwnerStore`.
 
+Cada documento de esta colección guarda dos referencias de tipo `Schema.Types.ObjectId`: `owner`, con el identificador del propietario, y `store`, con el identificador de la tienda. Así, cada documento representa una asociación entre ambos, sin duplicar sus datos. Además, un índice compuesto único sobre `owner` y `store` evita registrar dos veces la misma pareja de propietario y tienda.
 
-### Relacion de 1:1
-En esta la relacion se hace mediante el referenciado de la tienda y se indica que al momento de agregar la referencia el valor es unico indicandole asi a a el modelo que esta relacion no se va a repetir.
-// Relacion de uno a uno con la tienda
-    tienda: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Store',
-        required: true,
-        unique: true
-    }
+### Relación 1:M Tiendas y productos
 
+En la relación de uno a muchos, una tienda (`Store`) puede tener varios productos (`Product`), pero cada producto pertenece a una sola tienda.
 
+Esta conexión se realiza desde el modelo `Product`, mediante el campo obligatorio `tienda`, que guarda el identificador de la tienda como un `Schema.Types.ObjectId` con `ref: 'Store'`. Como este campo no es único, varios productos pueden guardar el mismo identificador de tienda y quedar asociados a ella.
 
+### Relación 1:1 Tiendas y habilitaciones
 
+En la relación de uno a uno, cada habilitación (`Habilitacion`) está asociada a una sola tienda (`Store`), y una tienda puede tener como máximo una habilitación registrada.
 
+La conexión se realiza mediante el campo `tienda` del modelo `Habilitacion`:
 
+```js
+tienda: {
+    type: Schema.Types.ObjectId,
+    ref: 'Store',
+    required: true,
+    unique: true
+}
+```
 
-  
-
-
+La opción `required: true` hace obligatoria la referencia a una tienda. Por su parte, `unique: true` define un índice único que impide guardar dos habilitaciones con el mismo identificador de tienda. Esto limita la relación a una habilitación por tienda, aunque no obliga a que todas las tiendas tengan una habilitación.
