@@ -19,7 +19,7 @@ export const createHabilitacion = async (req, res) => {
 export const getAllHabilitacion = async (req, res) => {
     try{ 
         
-        const habilitaciones = await HabilitacionModel.find();
+        const habilitaciones = await HabilitacionModel.find().populate('tienda', 'name location estado -_id');
 
 
         return res.status(200).json({ "msg": "Se obtuvieron todas las habilitaciones", "data": habilitaciones })
@@ -44,6 +44,7 @@ export const updateHabilitacion = async (req, res) => {
                 cambios[`vigencia.${campo}`] = vigencia[campo];
             }
         }
+        
         const habiltacionActualizada = await HabilitacionModel.findByIdAndUpdate(
             id, { $set: cambios }, { new: true, runValidators: true }
         );
