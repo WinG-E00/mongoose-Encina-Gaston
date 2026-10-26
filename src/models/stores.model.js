@@ -22,4 +22,17 @@ const storeSchema = new Schema({
 });
 
 
+storeSchema.virtual('habilitacion', {
+    ref: 'Habilitacion',
+    localField: '_id',
+    foreignField: 'tienda',
+    justOne: true
+})
+
+
+storeSchema.set('toJSON', { virtuals: true });
+
+
+
+
 export const StoreModel =  model("Store", storeSchema);

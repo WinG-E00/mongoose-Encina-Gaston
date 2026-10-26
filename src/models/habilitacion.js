@@ -39,4 +39,6 @@ const habilitacionSchema = new Schema({
 
 
 
+
+
 export const HabilitacionModel = model("Habilitacion", habilitacionSchema);

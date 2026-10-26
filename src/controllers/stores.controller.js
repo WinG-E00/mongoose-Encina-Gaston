@@ -32,7 +32,7 @@ export const obtenerStoresController =  async(req, res) => {
 
     try {
         
-        const allStores = await StoreModel.find().populate();
+        const allStores = await StoreModel.find().populate('habilitacion', '-_id');
 
         return res.status(200).json({ "msg": "Operacion realizada con exito", "data": allStores })
 
